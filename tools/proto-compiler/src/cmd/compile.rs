@@ -24,6 +24,9 @@ pub struct CompileCmd {
     #[argh(option, short = 'n')]
     /// path to the nft-transfer proto files
     nft: PathBuf,
+    #[argh(option, short = 'e')]
+    /// path to the Ethermint proto files
+    ethermint: PathBuf,
 
     #[argh(option, short = 'o')]
     /// path to output the generated Rust sources into
@@ -37,6 +40,7 @@ impl CompileCmd {
             self.sdk.as_ref(),
             self.ics.as_ref(),
             self.nft.as_ref(),
+            self.ethermint.as_ref(),
             self.out.as_ref(),
         )
         .unwrap_or_else(|e| {
@@ -62,6 +66,7 @@ impl CompileCmd {
         sdk_dir: &Path,
         ics_dir: &Path,
         nft_dir: &Path,
+        ethermint_dir: &Path,
         out_dir: &Path,
     ) -> Result<(), Box<dyn std::error::Error>> {
         println!(
@@ -89,6 +94,7 @@ impl CompileCmd {
             ics_dir.join("interchain_security/ccv/provider"),
             ics_dir.join("interchain_security/ccv/consumer"),
             nft_dir.join("ibc"),
+            ethermint_dir.join("ethermint"),
         ];
 
         let proto_includes_paths = [
@@ -96,6 +102,7 @@ impl CompileCmd {
             ibc_dir.to_path_buf(),
             ics_dir.to_path_buf(),
             nft_dir.to_path_buf(),
+            ethermint_dir.to_path_buf(),
             root.join("../../definitions/mock"),
             root.join("../../definitions/ibc/lightclients/localhost/v1"),
             root.join("../../definitions/stride/interchainquery/v1"),
