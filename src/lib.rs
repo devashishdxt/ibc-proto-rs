@@ -32,6 +32,9 @@ pub const COSMOS_SDK_COMMIT: &str = include_str!("COSMOS_SDK_COMMIT");
 /// The version (commit hash) of IBC Go used when generating this library.
 pub const IBC_GO_COMMIT: &str = include_str!("IBC_GO_COMMIT");
 
+/// The version (commit hash) of Ethermint used when generating this library.
+pub const ETHERMINT_COMMIT: &str = include_str!("ETHERMINT_COMMIT");
+
 /// The version (commit hash) of Interchain Security used when generating this library.
 pub const INTERCHAIN_SECURITY_COMMIT: &str = include_str!("INTERCHAIN_SECURITY_COMMIT");
 
@@ -307,6 +310,31 @@ pub mod stride {
     pub mod interchainquery {
         pub mod v1 {
             include_proto!("stride.interchainquery.v1.rs");
+        }
+    }
+}
+
+pub mod ethermint {
+    pub mod crypto {
+        pub mod v1 {
+            pub mod ethsecp256k1 {
+                include_proto!("ethermint.crypto.v1.ethsecp256k1.rs");
+            }
+        }
+    }
+    pub mod evm {
+        pub mod v1 {
+            include_proto!("ethermint.evm.v1.rs");
+        }
+    }
+    pub mod feemarket {
+        pub mod v1 {
+            include_proto!("ethermint.feemarket.v1.rs");
+        }
+    }
+    pub mod types {
+        pub mod v1 {
+            include_proto!("ethermint.types.v1.rs");
         }
     }
 }
